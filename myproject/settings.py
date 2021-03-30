@@ -10,7 +10,7 @@ SECRET_KEY = '2gcg&vdpvs#u$#_7!ph4ll58a=*29ca7axqzh*!+dv0!aena(b'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['78dec2e98afd.ngrok.io', ]
+ALLOWED_HOSTS = ['myproject-justforpractice.herokuapp.com', '127.0.0.1']
 
 
 INSTALLED_APPS = [
