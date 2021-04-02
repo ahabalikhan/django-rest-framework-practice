@@ -1,10 +1,17 @@
 import requests
+import json
 
-URL = "http://78dec2e98afd.ngrok.io/product/1"
+URL = "http://127.0.0.1:8000/product/create"
 
-r = requests.get(url=URL)
+data = {'name': 'test_product', 'price': '789'}
+
+
+json_data = json.dumps(data)
+print(json_data)
+
+r = requests.post(url=URL, data=json_data)
 
 data = r.json()
 
 
-print("Name of product is", data["name"], "and its price is", data["price"])
+print(data)

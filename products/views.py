@@ -2,7 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from .models import Product
 from .serializers import ProductSerializer
 from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
 from django.http import HttpResponse
+import io
+from django.views.decorators.csrf import csrf_exempt
 
 
 def productDetailView(request, id=0):
@@ -19,4 +22,26 @@ def productDetailView(request, id=0):
     json_data = JSONRenderer().render(serializer.data)
     # BOOM
     # return JsonResponse(json_data, safe=False)
+    return HttpResponse(json_data, content_type='application/json')
+
+
+@csrf_exempt
+def productCreate(request):
+    if request.method == 'POST':
+        json_data = request.body
+        stream = io.BytesIO(json_data)
+        pythondata = JSONParser().parse(stream)
+        serializer = ProductSerializer(data=pythondata)
+
+        if serializer.is_valid():
+            serializer.save()
+            response = {'msg': 'Product Saved'}
+        else:
+            response = serializer.errors
+            print("Error returned: ", response)
+    else:
+        response = {'msg': 'POST request is allowed only'}
+
+    json_data = JSONRenderer().render(response)
+
     return HttpResponse(json_data, content_type='application/json')
