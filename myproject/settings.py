@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '2gcg&vdpvs#u$#_7!ph4ll58a=*29ca7axqzh*!+dv0!aena(b'
 
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['myproject-justforpractice.herokuapp.com',
                  '127.0.0.1',
