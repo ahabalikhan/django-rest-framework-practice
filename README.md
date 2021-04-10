@@ -1,6 +1,6 @@
 # django-rest-framework-practice
 
-A practice of  REST
+A practice of building REST Api using Django Rest Framework
 
 ## Setup
 
